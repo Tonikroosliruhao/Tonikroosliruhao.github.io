@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="你们好啊, dawn的小屋">
+    <meta name="keywords" content="高度塌陷及BFC, dawn的小屋">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>你们好啊 | dawn的小屋</title>
+    <title>高度塌陷及BFC | dawn的小屋</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">你们好啊</h1>
+                    <h1 class="description center-align post-title">高度塌陷及BFC</h1>
                 </div>
             </div>
         </div>
@@ -430,14 +430,23 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E9%9A%8F%E7%AC%94/">
-                                <span class="chip bg-color">随笔</span>
+                            <a href="/tags/CSS-%E5%89%8D%E7%AB%AF/">
+                                <span class="chip bg-color">CSS 前端</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/2020%E5%B9%B47%E6%9C%88/" class="post-category">
+                                2020年7月
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -446,7 +455,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-05
+                    2020-07-20
                 </div>
                 
 
@@ -462,7 +471,54 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>东方欲晓，莫道君行早。踏遍青山人未老，风景这边独好。</p>
+                <h1 id="高度塌陷及BFC"><a href="#高度塌陷及BFC" class="headerlink" title="高度塌陷及BFC"></a>高度塌陷及BFC</h1><h2 id="高度塌陷"><a href="#高度塌陷" class="headerlink" title="高度塌陷"></a>高度塌陷</h2><ol>
+<li><p>父元素不设置固定高度，其内容被子元素撑开。若子元素浮动，脱离文档流，父元素高度就会变为零，影响布局。这种现象称为高度塌陷。   </p>
+</li>
+<li><p>父元素和子元素的margin-top会重叠（二者取较大）由于margin的塌陷,父级相对浏览器定位.而子级没有相对父级定位,子级相对父级,就像坍塌了一样，称为margin塌陷。</p>
+</li>
+<li><p>解决方案：开启BFC。</p>
+</li>
+</ol>
+<h2 id="BFC-Block-format-context"><a href="#BFC-Block-format-context" class="headerlink" title="BFC (Block format context)"></a>BFC (Block format context)</h2><p>BFC（块级格式化上下文）是CSS一种隐含属性，用于在页面内创立一个独立的布局区域，BFC中元素布局不受外界影响。</p>
+<p>BFC作用：  </p>
+<ul>
+<li>父元素的垂直外边距和子元素不会重叠</li>
+<li>开启BFC的元素不会被浮动元素所覆盖</li>
+<li>开启BFC的元素可以包含浮动的子元素</li>
+</ul>
+<p>开启BFC方法：<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context" target="_blank" rel="noopener">MDN链接</a></p>
+<ol>
+<li><p>设置父元素浮动。</p>
+</li>
+<li><p>父元素设置为行内块元素（inline-blocks），以上两条缺点明显，不推荐使用。</p>
+</li>
+<li><p>使用overflow，设定为非visible值(auto  hidden scroll)，如下所示：</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box1</span>&#123;</span></span><br><span class="line">        height: 200px;</span><br><span class="line">        width: 200px;</span><br><span class="line"><span class="css">        <span class="selector-tag">background-color</span>: <span class="selector-id">#bfc</span>;</span></span><br><span class="line">        float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-class">.box2</span>&#123;</span></span><br><span class="line">        height: 200px;</span><br><span class="line">        width: 200px;</span><br><span class="line"><span class="css">        <span class="selector-tag">background-color</span><span class="selector-pseudo">:orange</span>;    </span></span><br><span class="line">        overflow: hidden;       </span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="../images/1.png" alt="1" style="zoom: 50%;" align=left />
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.box1</span>&#123;</span></span><br><span class="line">            height: 200px;</span><br><span class="line">            width: 200px;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span>: <span class="selector-id">#bfc</span>;</span></span><br><span class="line">            overflow: hidden;      </span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.box2</span>&#123;</span></span><br><span class="line">            height: 100px;</span><br><span class="line">            width: 100px;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span><span class="selector-pseudo">:orange</span>;    </span></span><br><span class="line">            margin-top: 100px;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="../images/2.png" alt="2.jpg" style="zoom:50%;" align = left />
+
+<img src="../images/3.png" alt="3.jpg"  style="zoom:50%;"  align = left />
+
+<ol start="4">
+<li>利用clear属性和after伪类解决高度塌陷(常用)：</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.box1</span>&#123;</span></span><br><span class="line">            border: orange 10px solid;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.box2</span>&#123;</span></span><br><span class="line">            height: 100px;</span><br><span class="line">            width: 100px;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span>:<span class="selector-id">#bfa</span>;    </span></span><br><span class="line">            float: left;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.box1</span><span class="selector-pseudo">::after</span>&#123;</span></span><br><span class="line">            content: '';</span><br><span class="line"><span class="css">            <span class="selector-tag">display</span><span class="selector-pseudo">:block</span>;</span></span><br><span class="line">            clear: both;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="../images/4.png" alt="4"  />
+
+<p><img src="C:../images/5.png" alt="5"></p>
+<p>同理，使用::before可以解决margin塌陷问题，不同点是display不应当设置成block(会多出一行)，应当设置成table。</p>
+<ol start="5">
+<li>终极方案：clearfix，既可以解决高度塌陷又可以解决margin塌陷。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.box1</span>&#123;</span></span><br><span class="line">            border: orange 10px solid;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.box2</span>&#123;</span></span><br><span class="line">            height: 100px;</span><br><span class="line">            width: 100px;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span>:<span class="selector-id">#bfa</span>;    </span></span><br><span class="line">            float: left;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span>,<span class="selector-class">.clearfix</span><span class="selector-pseudo">::before</span>&#123;</span></span><br><span class="line">            content: '';</span><br><span class="line">            display: table;</span><br><span class="line"><span class="css">            <span class="selector-tag">clear</span><span class="selector-pseudo">:both</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1 clearfix"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 
             </div>
             <hr/>
@@ -488,7 +544,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://tonikroosliruhao.github.io/2020/07/05/%E4%BD%A0%E4%BB%AC%E5%A5%BD%E5%95%8A/">https://tonikroosliruhao.github.io/2020/07/05/%E4%BD%A0%E4%BB%AC%E5%A5%BD%E5%95%8A/</a>
+                    <a href="https://tonikroosliruhao.github.io/2020/07/20/%E9%AB%98%E5%BA%A6%E5%A1%8C%E9%99%B7%E5%8F%8ABFC/">https://tonikroosliruhao.github.io/2020/07/20/%E9%AB%98%E5%BA%A6%E5%A1%8C%E9%99%B7%E5%8F%8ABFC/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -526,8 +582,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E9%9A%8F%E7%AC%94/">
-                                    <span class="chip bg-color">随笔</span>
+                                <a href="/tags/CSS-%E5%89%8D%E7%AB%AF/">
+                                    <span class="chip bg-color">CSS 前端</span>
                                 </a>
                             
                         </div>
@@ -695,9 +751,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/07/20/%E9%AB%98%E5%BA%A6%E5%A1%8C%E9%99%B7%E5%8F%8ABFC/">
                     <div class="card-image">
@@ -718,9 +775,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -733,6 +790,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -748,7 +806,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2020/07/05/%E4%BD%A0%E4%BB%AC%E5%A5%BD%E5%95%8A/">
@@ -779,7 +837,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
