@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>GUI鼠标绘点</title>
+      <link href="/2020/10/10/GUI%E9%BC%A0%E6%A0%87%E7%BB%98%E7%82%B9/"/>
+      <url>/2020/10/10/GUI%E9%BC%A0%E6%A0%87%E7%BB%98%E7%82%B9/</url>
+      
+        <content type="html"><![CDATA[<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> mouselistener<span class="token punctuation">;</span><span class="token keyword">import</span> java<span class="token punctuation">.</span>awt<span class="token punctuation">.</span>*<span class="token punctuation">;</span><span class="token keyword">import</span> java<span class="token punctuation">.</span>awt<span class="token punctuation">.</span>event<span class="token punctuation">.</span>*<span class="token punctuation">;</span><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Iterator<span class="token punctuation">;</span><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestMouseListener</span> <span class="token punctuation">{</span>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">new</span> <span class="token class-name">MyFrame</span><span class="token punctuation">(</span><span class="token string">"666"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token keyword">class</span> <span class="token class-name">MyFrame</span> <span class="token keyword">extends</span> <span class="token class-name">Frame</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//用集合存鼠标点击的点</span>    ArrayList points <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">public</span> <span class="token function">MyFrame</span><span class="token punctuation">(</span>String title<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">super</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token function">setBounds</span><span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token function">setVisible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//添加鼠标监听事件。</span>        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addMouseListener</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MyMouseLisener</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>    <span class="token annotation punctuation">@Override</span>    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">paint</span><span class="token punctuation">(</span>Graphics g<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token comment" spellcheck="true">//遍历集合中的点</span>        Iterator iterator <span class="token operator">=</span> points<span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>            Point point <span class="token operator">=</span> <span class="token punctuation">(</span>Point<span class="token punctuation">)</span> iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            g<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span>Color<span class="token punctuation">.</span>blue<span class="token punctuation">)</span><span class="token punctuation">;</span>            g<span class="token punctuation">.</span><span class="token function">fillOval</span><span class="token punctuation">(</span>point<span class="token punctuation">.</span>x<span class="token punctuation">,</span> point<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>    <span class="token punctuation">}</span>    <span class="token comment" spellcheck="true">//将鼠标点击的点添加到集合中</span>    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addPoint</span><span class="token punctuation">(</span>Point point<span class="token punctuation">)</span> <span class="token punctuation">{</span>        points<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>point<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>    <span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">MyMouseLisener</span> <span class="token keyword">extends</span> <span class="token class-name">MouseAdapter</span> <span class="token punctuation">{</span>        <span class="token comment" spellcheck="true">//重写鼠标按压事件</span>        <span class="token annotation punctuation">@Override</span>        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">mousePressed</span><span class="token punctuation">(</span>MouseEvent e<span class="token punctuation">)</span> <span class="token punctuation">{</span>            MyFrame myFrame <span class="token operator">=</span> <span class="token punctuation">(</span>MyFrame<span class="token punctuation">)</span> e<span class="token punctuation">.</span><span class="token function">getSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            Point point <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Point</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getX</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getY</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">//将当前点击的点加入集合</span>            <span class="token function">addPoint</span><span class="token punctuation">(</span>point<span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">//每点击一次都刷新</span>            myFrame<span class="token punctuation">.</span><span class="token function">repaint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GUI </tag>
+            
+            <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>GUI简易demo</title>
       <link href="/2020/10/03/GUI%E7%AE%80%E6%98%93demo/"/>
       <url>/2020/10/03/GUI%E7%AE%80%E6%98%93demo/</url>
@@ -20,9 +47,9 @@
       
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> GUI </tag>
+            
+            <tag> Java </tag>
             
         </tags>
       
@@ -47,9 +74,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Java </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
